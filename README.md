@@ -7,6 +7,7 @@ This is a Streamlit-based web application that predicts Autism Spectrum Disorder
 1️⃣ Install Dependencies : 
     First, make sure you have Python installed, then install the required libraries: 
     pip install streamlit joblib numpy
+
 2️⃣ Run the Application :
     streamlit run app.py
 This will launch the web application in your browser.
