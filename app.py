@@ -19,8 +19,13 @@ st.markdown("""
     <style>
     .stApp {background: #1e1e1e; color: white;}  
     .title {font-size: 45px; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 30px;}
-    .question-box {background: #333333; border-radius: 10px;
-                   box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2); margin-bottom: 25px;}
+    .question-box {
+        background: #ffffff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+    }
     .question-text {font-size: 22px; font-weight: bold; color: #ffffff;}
     .option-label {font-size: 18px; font-weight: bold; color: #dddddd; padding: 8px;}
     .next-btn {background-color: #007bff; color: white; font-size: 18px; padding: 12px 24px;
