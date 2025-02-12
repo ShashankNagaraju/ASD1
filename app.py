@@ -14,20 +14,20 @@ ethnicity_options = {
 response_mapping = {"Always": 1, "Usually": 1, "Sometimes": 1, "Rarely": 0, "Never": 0}
 gender_mapping = {"Male": 1, "Female": 0, "Other": 2}
 
-# **Dark Theme Fix**
+# **Dark Theme**
 st.markdown("""
     <style>
     body {
-        background-color: #f4f4f4;
+        background-color: #1e1e1e;
         font-family: 'Arial', sans-serif;
     }
     .stApp {
-        background: linear-gradient(to right, #74ebd5, #ACB6E5);
+        background: linear-gradient(to right, #1e1e1e, #333);
     }
     .title {
         font-size: 42px;
         font-weight: bold;
-        color: #ffffff;
+        color: #f4d03f;
         text-align: center;
         padding: 20px;
     }
@@ -39,21 +39,24 @@ st.markdown("""
         margin-top: -20px;
     }
     .question-box {
-        background: #ffffff;
-        
+        background: #444;
         border-radius: 10px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
         margin-bottom: 15px;
     }
     .prediction-box {
-        background: #ffffff;
+        background: #444;
         padding: 20px;
         border-radius: 15px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
         text-align: center;
         font-size: 22px;
         font-weight: bold;
-        color: #333;
+        color: #f4d03f;
+    }
+    hr {
+        border: 2px solid #f4d03f;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -62,6 +65,7 @@ st.markdown("""
 st.markdown('<h1 class="title">🔍 ASD Traits Prediction</h1>', unsafe_allow_html=True)
 st.markdown('<h3 class="subheader">Early Autism Screening Tool</h3>', unsafe_allow_html=True)
 st.write(" ")
+
 # **Behavioral Questions**
 questions = [
     "Does your child avoid eye contact?", "Does your child prefer to play alone?",
@@ -91,7 +95,7 @@ if 'additional_responses' not in st.session_state:
 # **Display Behavioral Questions**
 if st.session_state.question_index < len(questions):
     st.markdown('<div class="question-box">', unsafe_allow_html=True)
-    st.markdown(f'<div class="question-text">Q{st.session_state.question_index + 1}: {questions[st.session_state.question_index]}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="question-text" style="color: #ffffff;">Q{st.session_state.question_index + 1}: {questions[st.session_state.question_index]}</div>', unsafe_allow_html=True)
 
     response = st.radio(
         "Select an option:",
@@ -107,13 +111,13 @@ if st.session_state.question_index < len(questions):
         if response is not None:
             st.session_state.responses.append(response_mapping[response])
             st.session_state.question_index += 1
-            st.rerun()  # ✅ Corrected rerun function
+            st.rerun()
         else:
             st.warning("Please select an option before proceeding.")
 
 # **After Behavioral Questions, Ask Additional Features**
 elif st.session_state.question_index == len(questions):
-    st.markdown("---")
+    st.markdown('<hr>', unsafe_allow_html=True)
     st.markdown('<h2 style="text-align: center; color:#f4d03f;">Additional Information</h2>', unsafe_allow_html=True)
 
     for feature, options in additional_features.items():
@@ -127,13 +131,13 @@ elif st.session_state.question_index == len(questions):
     if st.button("Submit & Predict"):
         if None not in st.session_state.additional_responses.values():
             st.session_state.question_index += 1
-            st.rerun()  # ✅ Corrected rerun function
+            st.rerun()
         else:
             st.warning("Please fill in all additional details before proceeding.")
 
 # **Show Results After Collecting All Features**
 elif st.session_state.question_index == len(questions) + 1:
-    st.markdown("---")
+    st.markdown('<hr>', unsafe_allow_html=True)
     st.markdown('<div class="question-box"><h2 style="text-align: center; color:#f4d03f;">Predicted Outcome...</h2></div>', unsafe_allow_html=True)
 
     # **Prepare Input Data** (10 responses + 5 additional features)
@@ -151,11 +155,11 @@ elif st.session_state.question_index == len(questions) + 1:
     prediction = model.predict(input_data)[0]
     result = "🛑 **ASD Traits Detected**" if prediction == 1 else "✅ **No ASD Traits**"
 
-    st.markdown(f'<div class="result-box">{result}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="prediction-box">{result}</div>', unsafe_allow_html=True)
 
     # **Restart Quiz**
     if st.button("Restart Quiz"):
         st.session_state.question_index = 0
         st.session_state.responses = []
         st.session_state.additional_responses = {}
-        st.rerun()  # ✅ Corrected rerun function
+        st.rerun()
