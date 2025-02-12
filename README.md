@@ -1,4 +1,4 @@
-ASD Traits Prediction
+### **🧩 ASD Traits Prediction**
 
 This is a Streamlit-based web application that predicts Autism Spectrum Disorder (ASD) traits based on user responses to behavioral questions and additional demographic information.
 
