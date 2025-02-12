@@ -41,7 +41,7 @@ st.markdown("""
     .question-box {
         background: #444;
         border-radius: 10px;
-        padding: 15px;
+        
         box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
         margin-bottom: 15px;
     }
