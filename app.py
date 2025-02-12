@@ -27,13 +27,17 @@ st.markdown("""
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
         text-align: center; 
         width: 50%; 
-        margin: 0 auto; 
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px; /* Adjust height */
     }
 
     .description { 
         font-size: 18px; 
         color: #555555; 
-        margin-top: 10px;
+        text-align: center;
     }
 
     .question-box {background: #333333; padding: 20px; border-radius: 10px;
@@ -52,12 +56,13 @@ st.markdown("""
 # **Header**
 st.markdown('<h1 class="title">🔍 ASD Traits Prediction</h1>', unsafe_allow_html=True)
 
-# **White Bar with Description**
+# **White Bar with Description INSIDE IT**
 st.markdown("""
     <div class="search-bar">
-        <p class="description">Analyze responses to predict ASD traits with AI.</p>
+        <span class="description">Analyze responses to predict ASD traits with AI.</span>
     </div>
 """, unsafe_allow_html=True)
+
 
 
 
