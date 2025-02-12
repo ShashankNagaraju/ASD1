@@ -18,7 +18,8 @@ gender_mapping = {"Male": 1, "Female": 0, "Other": 2}
 st.markdown("""
     <style>
     .stApp {background: #1e1e1e; color: white;}  
-    .title {font-size: 45px; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 30px;}
+    .title {font-size: 45px; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 10px;}
+
     .question-box {background: #333333; padding: 20px; border-radius: 10px;
                    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2); margin-bottom: 25px;}
     .question-text {font-size: 22px; font-weight: bold; color: #ffffff;}
