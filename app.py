@@ -18,18 +18,22 @@ gender_mapping = {"Male": 1, "Female": 0, "Other": 2}
 st.markdown("""
     <style>
     .stApp {background: #1e1e1e; color: white;}  
-    .title {font-size: 45px; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 5px;}
+    .title {font-size: 45px; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 10px;}
     
-    .block-container {  /* Removes Streamlit’s default padding */
-        padding-top: 0px !important;
+    .search-bar {
+        background: #ffffff; 
+        padding: 15px; 
+        border-radius: 10px; 
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+        text-align: center; 
+        width: 50%; 
+        margin: 0 auto; 
     }
 
-    .description-box { 
-        text-align: center; 
+    .description { 
         font-size: 18px; 
-        color: #bbbbbb; 
-        margin-top: -15px; 
-        margin-bottom: 20px; 
+        color: #555555; 
+        margin-top: 10px;
     }
 
     .question-box {background: #333333; padding: 20px; border-radius: 10px;
@@ -48,8 +52,13 @@ st.markdown("""
 # **Header**
 st.markdown('<h1 class="title">🔍 ASD Traits Prediction</h1>', unsafe_allow_html=True)
 
-# **Description to fill empty space**
-st.markdown('<p class="description-box">An AI-powered tool to analyze and predict Autism Spectrum Disorder (ASD) traits based on responses.</p>', unsafe_allow_html=True)
+# **White Bar with Description**
+st.markdown("""
+    <div class="search-bar">
+        <p class="description">Analyze responses to predict ASD traits with AI.</p>
+    </div>
+""", unsafe_allow_html=True)
+
 
 
 # **Behavioral Questions**
