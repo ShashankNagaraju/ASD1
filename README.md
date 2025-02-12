@@ -9,11 +9,14 @@ This is a Streamlit-based web application that predicts Autism Spectrum Disorder
     pip install streamlit joblib numpy
 
 2️⃣ Run the Application :
-    streamlit run app.py
+    streamlit run app.py.
+    
 This will launch the web application in your browser.
 
 🌐 Live Demo
+
 You can try the deployed version here:  
+
 🔗 [ASD Companion](https://asdcompanion.streamlit.app/)
 
 🛠 Features
