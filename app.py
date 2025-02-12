@@ -14,27 +14,28 @@ ethnicity_options = {
 response_mapping = {"Always": 1, "Usually": 1, "Sometimes": 1, "Rarely": 0, "Never": 0}
 gender_mapping = {"Male": 1, "Female": 0, "Other": 2}
 
-# Improved CSS Styling (Darker Text for Contrast)
+# **Updated Dark Theme**
 st.markdown("""
     <style>
-    .stApp {background: linear-gradient(to right, #ffffff, #e3e3e3);}
-    .title {font-size: 45px; font-weight: bold; color: #2c3e50; text-align: center; margin-bottom: 30px;}
-    .question-box {background: #ffffff; padding: 20px; border-radius: 10px;
-                   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 25px;}
-    .question-text {font-size: 22px; font-weight: bold; color: #333;}
-    .option-label {font-size: 18px; font-weight: bold; color: #444; padding: 8px;}
+    .stApp {background: #1e1e1e; color: white;}  /* Dark background */
+    .title {font-size: 45px; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 30px;}
+    .question-box {background: #333333; padding: 20px; border-radius: 10px;
+                   box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2); margin-bottom: 25px;}
+    .question-text {font-size: 22px; font-weight: bold; color: #ffffff;}
+    .option-label {font-size: 18px; font-weight: bold; color: #dddddd; padding: 8px;}
     .next-btn {background-color: #007bff; color: white; font-size: 18px; padding: 12px 24px;
                border-radius: 8px; cursor: pointer; width: 100%; text-align: center;}
-    .result-box {background: #f8f9fa; padding: 25px; border-radius: 10px;
-                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); text-align: center; font-size: 22px;
-                 font-weight: bold; color: #333;}
+    .result-box {background: #222; padding: 25px; border-radius: 10px;
+                 box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2); text-align: center; font-size: 22px;
+                 font-weight: bold; color: #ffffff;}
+    select, input {background: #f8f9fa; color: black;} /* Light background for input fields */
     </style>
 """, unsafe_allow_html=True)
 
-# Header
+# **Header**
 st.markdown('<h1 class="title">🔍 ASD Traits Prediction</h1>', unsafe_allow_html=True)
 
-# Behavioral Questions
+# **Behavioral Questions**
 questions = [
     "Does your child avoid eye contact?", "Does your child prefer to play alone?",
     "Does your child have difficulty understanding emotions?", "Does your child engage in repetitive movements?",
@@ -43,7 +44,7 @@ questions = [
     "Does your child have difficulty making friends?", "Does your child frequently get upset without a clear reason?"
 ]
 
-# Additional Features
+# **Additional Features**
 additional_features = {
     "Sex": list(gender_mapping.keys()),
     "Ethnicity": list(ethnicity_options.keys()),
@@ -52,7 +53,7 @@ additional_features = {
     "Family ASD History": ["Yes", "No"]
 }
 
-# Session State Initialization
+# **Session State Initialization**
 if 'question_index' not in st.session_state:
     st.session_state.question_index = 0
 if 'responses' not in st.session_state:
@@ -60,7 +61,7 @@ if 'responses' not in st.session_state:
 if 'additional_responses' not in st.session_state:
     st.session_state.additional_responses = {}
 
-# Display Behavioral Questions First
+# **Display Behavioral Questions**
 if st.session_state.question_index < len(questions):
     st.markdown('<div class="question-box">', unsafe_allow_html=True)
     st.markdown(f'<div class="question-text">Q{st.session_state.question_index + 1}: {questions[st.session_state.question_index]}</div>', unsafe_allow_html=True)
@@ -83,7 +84,7 @@ if st.session_state.question_index < len(questions):
         else:
             st.warning("Please select an option before proceeding.")
 
-# After Behavioral Questions, Ask Additional Features
+# **After Behavioral Questions, Ask Additional Features**
 elif st.session_state.question_index == len(questions):
     st.markdown("---")
     st.markdown('<h2 style="text-align: center; color:#f4d03f;">Additional Information</h2>', unsafe_allow_html=True)
@@ -103,12 +104,12 @@ elif st.session_state.question_index == len(questions):
         else:
             st.warning("Please fill in all additional details before proceeding.")
 
-# Show Results After Collecting All Features
+# **Show Results After Collecting All Features**
 elif st.session_state.question_index == len(questions) + 1:
     st.markdown("---")
     st.markdown('<div class="question-box"><h2 style="text-align: center; color:#f4d03f;">Processing Results...</h2></div>', unsafe_allow_html=True)
 
-    # Prepare Input Data (10 responses + 5 additional features)
+    # **Prepare Input Data** (10 responses + 5 additional features)
     input_data = np.array(
         st.session_state.responses + [
             gender_mapping[st.session_state.additional_responses["Sex"]],
@@ -119,13 +120,13 @@ elif st.session_state.question_index == len(questions) + 1:
         ]
     ).reshape(1, -1)
 
-    # Prediction
+    # **Prediction**
     prediction = model.predict(input_data)[0]
     result = "🛑 **ASD Traits Detected**" if prediction == 1 else "✅ **No ASD Traits**"
 
     st.markdown(f'<div class="result-box">{result}</div>', unsafe_allow_html=True)
 
-    # Restart Quiz
+    # **Restart Quiz**
     if st.button("Restart Quiz"):
         st.session_state.question_index = 0
         st.session_state.responses = []
