@@ -14,10 +14,10 @@ ethnicity_options = {
 response_mapping = {"Always": 1, "Usually": 1, "Sometimes": 1, "Rarely": 0, "Never": 0}
 gender_mapping = {"Male": 1, "Female": 0, "Other": 2}
 
-# **Updated Dark Theme**
+# **Dark Theme Fix**
 st.markdown("""
     <style>
-    .stApp {background: #1e1e1e; color: white;}  /* Dark background */
+    .stApp {background: #1e1e1e; color: white;}  
     .title {font-size: 45px; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 30px;}
     .question-box {background: #333333; padding: 20px; border-radius: 10px;
                    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2); margin-bottom: 25px;}
@@ -28,7 +28,7 @@ st.markdown("""
     .result-box {background: #222; padding: 25px; border-radius: 10px;
                  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2); text-align: center; font-size: 22px;
                  font-weight: bold; color: #ffffff;}
-    select, input {background: #f8f9fa; color: black;} /* Light background for input fields */
+    select, input {background: #f8f9fa; color: black;} 
     </style>
 """, unsafe_allow_html=True)
 
@@ -80,7 +80,7 @@ if st.session_state.question_index < len(questions):
         if response is not None:
             st.session_state.responses.append(response_mapping[response])
             st.session_state.question_index += 1
-            st.experimental_rerun()
+            st.rerun()  # ✅ Corrected rerun function
         else:
             st.warning("Please select an option before proceeding.")
 
@@ -100,7 +100,7 @@ elif st.session_state.question_index == len(questions):
     if st.button("Submit & Predict"):
         if None not in st.session_state.additional_responses.values():
             st.session_state.question_index += 1
-            st.experimental_rerun()
+            st.rerun()  # ✅ Corrected rerun function
         else:
             st.warning("Please fill in all additional details before proceeding.")
 
@@ -131,4 +131,4 @@ elif st.session_state.question_index == len(questions) + 1:
         st.session_state.question_index = 0
         st.session_state.responses = []
         st.session_state.additional_responses = {}
-        st.rerun()
+        st.rerun()  # ✅ Corrected rerun function
