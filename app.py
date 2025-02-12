@@ -17,29 +17,51 @@ gender_mapping = {"Male": 1, "Female": 0, "Other": 2}
 # **Dark Theme Fix**
 st.markdown("""
     <style>
-    .stApp {background: #1e1e1e; color: white;}  
-    .title {font-size: 45px; font-weight: bold; color: #ffffff; text-align: center; margin-bottom: 30px;}
+    body {
+        background-color: #f4f4f4;
+        font-family: 'Arial', sans-serif;
+    }
+    .stApp {
+        background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    }
+    .title {
+        font-size: 42px;
+        font-weight: bold;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+    }
+    .subheader {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffffff;
+        text-align: center;
+        margin-top: -20px;
+    }
     .question-box {
         background: #ffffff;
-        padding: 15px;
+        
         border-radius: 10px;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         margin-bottom: 15px;
     }
-    .question-text {font-size: 22px; font-weight: bold; color: #ffffff;}
-    .option-label {font-size: 18px; font-weight: bold; color: #dddddd; padding: 8px;}
-    .next-btn {background-color: #007bff; color: white; font-size: 18px; padding: 12px 24px;
-               border-radius: 8px; cursor: pointer; width: 100%; text-align: center;}
-    .result-box {background: #222; padding: 25px; border-radius: 10px;
-                 box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2); text-align: center; font-size: 22px;
-                 font-weight: bold; color: #ffffff;}
-    select, input {background: #f8f9fa; color: black;} 
+    .prediction-box {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# **Header**
+# ----------------------------- UI Layout -----------------------------
 st.markdown('<h1 class="title">🔍 ASD Traits Prediction</h1>', unsafe_allow_html=True)
-
+st.markdown('<h3 class="subheader">Early Autism Screening Tool</h3>', unsafe_allow_html=True)
+st.write(" ")
 # **Behavioral Questions**
 questions = [
     "Does your child avoid eye contact?", "Does your child prefer to play alone?",
