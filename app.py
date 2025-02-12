@@ -141,4 +141,5 @@ elif st.session_state.question_index == len(questions) + 1:
         st.session_state.question_index = 0
         st.session_state.responses = []
         st.session_state.additional_responses = {}
-        st.experimental_rerun()
+        st.rerun()
+
