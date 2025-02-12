@@ -107,7 +107,7 @@ elif st.session_state.question_index == len(questions):
 # **Show Results After Collecting All Features**
 elif st.session_state.question_index == len(questions) + 1:
     st.markdown("---")
-    st.markdown('<div class="question-box"><h2 style="text-align: center; color:#f4d03f;">Processing Results...</h2></div>', unsafe_allow_html=True)
+    st.markdown('<div class="question-box"><h2 style="text-align: center; color:#f4d03f;">Predicted Outcome...</h2></div>', unsafe_allow_html=True)
 
     # **Prepare Input Data** (10 responses + 5 additional features)
     input_data = np.array(
