@@ -55,6 +55,8 @@ st.markdown("""
         font-weight: bold;
         color: #f4d03f;
     }
+    .question-text {font-size: 22px; font-weight: bold; color: #ffffff;}
+    .option-label {font-size: 18px; font-weight: bold; color: #dddddd; padding: 8px;}
     hr {
         border: 2px solid #f4d03f;
     }
